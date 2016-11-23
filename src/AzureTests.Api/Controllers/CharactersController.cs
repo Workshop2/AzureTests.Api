@@ -32,9 +32,11 @@ namespace AzureTests.Api.Controllers
         }
 
         // POST: api/Characters
-        public void Post([FromBody] Tuple<Guid, string> value)
+        public Guid Post([FromBody] string value)
         {
-            _characters.Add(value.Item1, value.Item2);
+            var guid = Guid.NewGuid();
+            _characters.Add(guid, value);
+            return guid;
         }
         
         // DELETE: api/Characters/5
