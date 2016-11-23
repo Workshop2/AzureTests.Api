@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+using System.Web.Http;
 
 namespace AzureTests.Api.Controllers
 {
-    [Route("api/[controller]")]
-    public class CharactersController : Controller
+    public class CharactersController : ApiController
     {
         private static Dictionary<Guid, string> _characters = new Dictionary<Guid, string>
         {
@@ -19,30 +18,26 @@ namespace AzureTests.Api.Controllers
             {Guid.NewGuid(), "River Tam" },
             {Guid.NewGuid(), "Derrial Book" },
         };
-        
-        // GET api/characters
-        [HttpGet]
+
+        // GET: api/Characters
         public IDictionary<Guid, string> Get()
         {
             return _characters;
         }
 
-        // GET api/characters/5
-        [HttpGet("{id}")]
+        // GET: api/Characters/5
         public string Get(Guid id)
         {
             return _characters[id];
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]Tuple<Guid, string> value)
+        // POST: api/Characters
+        public void Post([FromBody] Tuple<Guid, string> value)
         {
             _characters.Add(value.Item1, value.Item2);
         }
         
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
+        // DELETE: api/Characters/5
         public void Delete(Guid id)
         {
             _characters.Remove(id);
