@@ -26,10 +26,10 @@ namespace AzureTests.Api.Controllers
         }
 
         // GET: api/Characters/5
-        public string Get(Guid id)
-        {
-            return _characters[id];
-        }
+        //public string Get(Guid id)
+        //{
+        //    return _characters[id];
+        //}
 
         // POST: api/Characters
         public Guid Post([FromBody] string value)
